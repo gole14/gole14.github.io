@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #70e1f5 0%, #ffd194 100%);
-            font-family: Arial, sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
         .container {
             text-align: center;
@@ -23,14 +23,16 @@
             padding: 15px 30px;
             font-size: 16px;
             color: white;
-            background-color: #007BFF;
+            background-color: #FF4081;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             text-decoration: none;
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #E91E63;
         }
         .loading-screen, .message-screen {
             display: none;
@@ -54,23 +56,25 @@
             background-color: #f3f3f3;
             border-radius: 5px;
             overflow: hidden;
+            margin-bottom: 20px;
         }
         .progress-bar {
             width: 0;
             height: 30px;
-            background-color: #3498db;
+            background-color: #FF4081;
             border-radius: 5px;
             text-align: center;
             line-height: 30px;
             color: white;
         }
-        .blinking {
-            animation: blink 1s infinite;
+        .message {
+            font-size: 24px;
+            margin-bottom: 20px;
+            animation: fadeInOut 12s infinite;
         }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+        @keyframes fadeInOut {
+            0%, 49%, 100% { opacity: 0; }
+            50%, 99% { opacity: 1; }
         }
     </style>
 </head>
@@ -86,7 +90,8 @@
         <p>Cargando...</p>
     </div>
     <div class="message-screen" id="messageScreen">
-        <p class="blinking">ignoraste las advertencias y aún así diste clic al botón. Wtf</p>
+        <p class="message" id="message1">Feliz cuarto aniversario</p>
+        <p class="message" id="message2" style="display: none;">Te amo un montón</p>
     </div>
     <script>
         function startProcess() {
@@ -105,9 +110,14 @@
                     document.getElementById('messageScreen').classList.add('active');
                     
                     setTimeout(() => {
-                        document.getElementById('messageScreen').classList.remove('active');
-                        window.location.href = 'https://shorturl.at/8k7K4';
-                    }, 3000);
+                        document.getElementById('message1').style.display = 'none';
+                        document.getElementById('message2').style.display = 'block';
+                        
+                        setTimeout(() => {
+                            document.getElementById('messageScreen').classList.remove('active');
+                            window.location.href = 'https://shorturl.at/8k7K4';
+                        }, 6000);
+                    }, 6000);
                 }
             }, 50);
         }
