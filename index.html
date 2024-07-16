@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio Romántico</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #FF4081;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #E91E63;
+        }
+        .loading-screen, .message-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+        }
+        .loading-screen.active, .message-screen.active {
+            display: flex;
+        }
+        .progress-container {
+            width: 80%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 0;
+            height: 30px;
+            background-color: #FF4081;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+        .message {
+            font-size: 36px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #FF4081;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sitio web romántico</h1>
+        <button class="button" onclick="startProcess()">Haz clic aquí</button>
+    </div>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+        <p class="message" id="message1">Feliz cuarto aniversario</p>
+        <p class="message" id="message2" style="display: none;">Te amo un montón</p>
+    </div>
+    <script>
+        function startProcess() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('loadingScreen').classList.add('active');
+            
+            let progress = 0;
+            const progressBar = document.getElementById('progressBar');
+            const message1 = document.getElementById('message1');
+            const message2 = document.getElementById('message2');
+
+            setTimeout(() => {
+                message1.style.display = 'none';
+                message2.style.display = 'block';
+            }, 3000); // Mostrar el segundo mensaje después de 3 segundos
+            
+            const interval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '%';
+                if (progress === 100) {
+                    clearInterval(interval);
+                    document.getElementById('loadingScreen').classList.remove('active');
+                    window.location.href = 'https://shorturl.at/8k7K4';
+                }
+            }, 60); // Incrementar el progreso cada 60ms para una duración total de 6 segundos
+        }
+    </script>
+</body>
+</html>
