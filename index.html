@@ -32,12 +32,72 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .loading-screen, .message-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+        }
+        .loading-screen.active, .message-screen.active {
+            display: flex;
+        }
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .blinking {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Sitio web sospechoso</h1>
-        <a href="https://drive.google.com/drive/folders/17CFg1RoQUhNe3Ow_Xh6cMtSKHkS9AhhC" class="button">Botón sospechoso (dar clic)</a>
+        <button class="button" onclick="startProcess()">Haz clic aquí</button>
     </div>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <p>Cargando...</p>
+    </div>
+    <div class="message-screen" id="messageScreen">
+        <p class="blinking">ignoraste las advertencias y aún así diste clic al botón. Wtf</p>
+    </div>
+    <script>
+        function startProcess() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('loadingScreen').classList.add('active');
+            
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.remove('active');
+                document.getElementById('messageScreen').classList.add('active');
+                
+                setTimeout(() => {
+                    document.getElementById('messageScreen').classList.remove('active');
+                    window.location.href = 'https://shorturl.at/8k7K4';
+                }, 3000);
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
